@@ -1,12 +1,11 @@
-import { createRoot } from 'react-dom/client'
-import { Pages } from '../pages'
-import React from 'react'
+import { Footer } from 'widgets/footer'
+import { Header } from 'widgets/header'
+import { Router } from './router'
 
-const container = document.querySelector('#root') as HTMLElement
-const root = createRoot(container)
-
-root.render(
-  <React.StrictMode>
-    <Pages />
-  </React.StrictMode>,
+export const App = () => (
+  <>
+    <Header />
+    <Router />
+    <Footer />
+  </>
 )

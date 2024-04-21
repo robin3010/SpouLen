@@ -58,6 +58,7 @@ module.exports = {
         tsx: 'never',
       },
     ],
+    "import/no-internal-modules": 0,
     "@conarti/feature-sliced/layers-slices": 2,
     "@conarti/feature-sliced/absolute-relative": 2,
     "@conarti/feature-sliced/public-api": 0,

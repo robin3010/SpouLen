@@ -1,11 +1,4 @@
-import { Footer } from 'widgets/footer'
-import { Header } from 'widgets/header'
-import { Router } from './router'
+import { RouterProvider } from 'react-router-dom'
+import { router } from './router/router'
 
-export const App = () => (
-  <>
-    <Header />
-    <Router />
-    <Footer />
-  </>
-)
+export const App = () => <RouterProvider router={router} />

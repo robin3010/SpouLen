@@ -1,12 +1,4 @@
-import { createRoot } from 'react-dom/client'
-import { Pages } from '../pages'
-import React from 'react'
+import { RouterProvider } from 'react-router-dom'
+import { router } from './router/router'
 
-const container = document.querySelector('#root') as HTMLElement
-const root = createRoot(container)
-
-root.render(
-  <React.StrictMode>
-    <Pages />
-  </React.StrictMode>,
-)
+export const App = () => <RouterProvider router={router} />

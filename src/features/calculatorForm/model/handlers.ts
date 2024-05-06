@@ -1,28 +1,33 @@
-import { calculate } from 'entities/calculator'
-import { ChangeEvent, FormEvent } from 'react'
-import { formInit } from 'shared/config'
+import { useStore } from 'app/store/storeContext'
+import { ChangeEvent, FormEvent, useMemo } from 'react'
 import { CalcForm } from 'shared/types'
 
-export const handleChangeFn =
-  <T>(formData: T, setNewDataWithLS: (data: T) => void) =>
-  (e: ChangeEvent<HTMLInputElement>) => {
-    const { id, value } = e.target
+export const useHandlers = () => {
+  const { setNewData, reset, calculateResult } = useStore()
 
-    const newData = {
-      ...formData,
-      [id]: +value,
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setNewData(e)
+  }
+
+  const handleReset = () => {
+    reset()
+  }
+
+  const handleSubmit =
+    (formData: CalcForm) => (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault()
+      console.log(formData)
+      calculateResult(formData)
     }
-    setNewDataWithLS(newData)
-  }
 
-export const handleResetFn =
-  (setNewDataWithLS: (data: typeof formInit) => void) => () => {
-    setNewDataWithLS(formInit)
-  }
+  const handlers = useMemo(
+    () => ({
+      handleChange,
+      handleReset,
+      handleSubmit,
+    }),
+    [],
+  )
 
-export const handleSubmitFn =
-  (formData: CalcForm) => (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    console.log(formData)
-    console.log(calculate(formData))
-  }
+  return handlers
+}

@@ -1,32 +1,22 @@
-import { useState } from 'react'
 import { Form, Row } from 'react-bootstrap'
-import { formDispatchWithLS, getFormLsData } from 'entities/calculator'
 import { formInputNames } from 'shared/config'
-import { CalcForm } from 'shared/types'
 import { FormControl, FormGroup } from 'shared/ui/input'
-import {
-  handleChangeFn,
-  handleResetFn,
-  handleSubmitFn,
-} from '../model/handlers'
+import { useHandlers } from '../model/handlers'
 import { Button } from 'shared/ui/button'
+import { observer } from 'mobx-react-lite'
+import { useStore } from 'app/store/storeContext'
 
-export const CalculatorForm = () => {
-  const [formData, setFormData] = useState<CalcForm>(() => getFormLsData())
+export const CalculatorForm = observer(() => {
+  const { formData } = useStore()
+  const { handleChange, handleReset, handleSubmit } = useHandlers()
 
-  const setFormDataWithLS = formDispatchWithLS(setFormData)
-
-  const handleChange = handleChangeFn(formData, setFormDataWithLS)
-
-  const handleReset = handleResetFn(setFormDataWithLS)
-
-  const handleSubmit = handleSubmitFn(formData)
+  const handleSubmitFn = handleSubmit(formData)
 
   return (
     <>
       <Form
         noValidate
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmitFn}
         onReset={handleReset}
       >
         <Row>
@@ -36,7 +26,7 @@ export const CalculatorForm = () => {
           >
             <FormControl
               label='Высота излива, мм'
-              value={formData?.spoutH}
+              value={formData.spoutH}
               onChange={handleChange}
             />
           </FormGroup>
@@ -46,7 +36,7 @@ export const CalculatorForm = () => {
           >
             <FormControl
               label='Длина излива, мм'
-              value={formData?.spoutL}
+              value={formData.spoutL}
               onChange={handleChange}
             />
           </FormGroup>
@@ -56,7 +46,7 @@ export const CalculatorForm = () => {
           >
             <FormControl
               label='Угол наклона излива'
-              value={formData?.spoutAngle}
+              value={formData.spoutAngle}
               onChange={handleChange}
             />
           </FormGroup>
@@ -68,7 +58,7 @@ export const CalculatorForm = () => {
           >
             <FormControl
               label='Высота чаши мойки | раковины, мм'
-              value={formData?.sinkH}
+              value={formData.sinkH}
               onChange={handleChange}
             />
           </FormGroup>
@@ -78,7 +68,7 @@ export const CalculatorForm = () => {
           >
             <FormControl
               label='Расстояние до центра слива, мм'
-              value={formData?.sinkDrain}
+              value={formData.sinkDrain}
               onChange={handleChange}
             />
           </FormGroup>
@@ -86,7 +76,7 @@ export const CalculatorForm = () => {
         <FormGroup controlId={formInputNames.sinkFaucetShift}>
           <FormControl
             label='Расстояние до центра монтажного отверстия смесителя, мм'
-            value={formData?.sinkFaucetShift}
+            value={formData.sinkFaucetShift}
             onChange={handleChange}
           />
         </FormGroup>
@@ -107,4 +97,4 @@ export const CalculatorForm = () => {
       </Form>
     </>
   )
-}
+})

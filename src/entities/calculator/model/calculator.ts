@@ -9,5 +9,5 @@ const getTanDeg = (deg: number) => {
 export const calculate = (args: CalcForm): number => {
   const lenFromAngle = (args.sinkH + args.spoutH) * getTanDeg(args.spoutAngle)
 
-  return args.spoutL + lenFromAngle
+  return Math.round(args.spoutL + lenFromAngle)
 }

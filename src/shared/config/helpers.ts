@@ -1,6 +1,6 @@
 import { formVars } from './consts'
 
-type createServiceObjArgType<T> = T extends number ? number : string
+type createServiceObjArgType<N, S> = N extends number ? N : S
 
 export const createServiceObj = <T>(value?: T) => {
   return formVars.reduce(
@@ -10,6 +10,6 @@ export const createServiceObj = <T>(value?: T) => {
         [key]: value ?? key,
       }
     },
-    {} as { [k in (typeof formVars)[number]]: createServiceObjArgType<T> },
+    {} as { [k in (typeof formVars)[number]]: createServiceObjArgType<T, k> },
   )
 }

@@ -4,6 +4,7 @@ export const formVars = [
   'sinkDrain',
   'sinkFaucetShift',
   'sinkH',
+  'sinkL',
   'spoutAngle',
   'spoutH',
   'spoutL',

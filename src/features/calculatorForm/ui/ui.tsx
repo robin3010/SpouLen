@@ -1,6 +1,6 @@
-import { Form, Row } from 'react-bootstrap'
+import { Col, Form, Row } from 'react-bootstrap'
 import { formInputNames } from 'shared/config'
-import { FormControl, FormGroup } from 'shared/ui/input'
+import { FormControl } from 'shared/ui/input'
 import { useHandlers } from '../model/handlers'
 import { Button } from 'shared/ui/button'
 import { observer } from 'mobx-react-lite'
@@ -20,66 +20,51 @@ export const CalculatorForm = observer(() => {
         onReset={handleReset}
       >
         <Row>
-          <FormGroup
-            controlId={formInputNames.spoutH}
-            sm
-          >
+          <Col sm>
             <FormControl
               label='Высота излива, мм'
-              value={formData.spoutH}
+              id={formInputNames.spoutH}
               onChange={handleChange}
             />
-          </FormGroup>
-          <FormGroup
-            controlId={formInputNames.spoutL}
-            sm
-          >
+          </Col>
+          <Col sm>
             <FormControl
               label='Длина излива, мм'
-              value={formData.spoutL}
+              id={formInputNames.spoutL}
               onChange={handleChange}
             />
-          </FormGroup>
-          <FormGroup
-            controlId={formInputNames.spoutAngle}
-            sm='5'
-          >
+          </Col>
+          <Col sm='5'>
             <FormControl
               label='Угол наклона излива'
-              value={formData.spoutAngle}
+              id={formInputNames.spoutAngle}
               onChange={handleChange}
             />
-          </FormGroup>
+          </Col>
         </Row>
         <Row>
-          <FormGroup
-            controlId={formInputNames.sinkH}
-            sm
-          >
+          <Col sm>
             <FormControl
               label='Высота чаши мойки | раковины, мм'
-              value={formData.sinkH}
+              id={formInputNames.sinkH}
               onChange={handleChange}
             />
-          </FormGroup>
-          <FormGroup
-            controlId={formInputNames.sinkDrain}
-            sm
-          >
+          </Col>
+          <Col sm>
             <FormControl
               label='Расстояние до центра слива, мм'
-              value={formData.sinkDrain}
+              id={formInputNames.sinkDrain}
               onChange={handleChange}
             />
-          </FormGroup>
+          </Col>
         </Row>
-        <FormGroup controlId={formInputNames.sinkFaucetShift}>
+        <Col>
           <FormControl
             label='Расстояние до центра монтажного отверстия смесителя, мм'
-            value={formData.sinkFaucetShift}
+            id={formInputNames.sinkFaucetShift}
             onChange={handleChange}
           />
-        </FormGroup>
+        </Col>
         <div className='d-flex justify-content-center gap-2 mt-2'>
           <Button
             variant='primary'

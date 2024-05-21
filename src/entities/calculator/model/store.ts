@@ -14,9 +14,12 @@ export const CalculatorFormStore = types
   .actions((self) => ({
     setNewData(e: ChangeEvent<HTMLInputElement>) {
       const { id, value } = e.target
-      const { formData } = self
-      if (!isNaN(+value))
-        formData[id as keyof SnapshotOut<typeof formData>] = +value
+      const { formData: data } = self
+      if (!isNaN(+value)) data[id as keyof SnapshotOut<typeof data>] = +value
+    },
+    setSinkL() {
+      const { sinkDrain, sinkFaucetShift } = self.formData
+      self.formData.sinkL = sinkDrain + sinkFaucetShift
     },
     reset() {
       self.formData = { ...formInit }
@@ -31,10 +34,19 @@ export const CalculatorFormStore = types
 
 export const CalculatorResultStore = types
   .model('CalculatorResultStore', {
-    formResult: types.optional(types.number, 0),
+    formResult: types.model({
+      value: 0,
+      showResult: false,
+    }),
   })
   .actions((self) => ({
     calculateResult(submitData: CalcForm) {
-      self.formResult = calculate(submitData)
+      let { formResult: res } = self
+      res.value = calculate(submitData)
+      if (!res.showResult) this.toggleResult()
+    },
+    toggleResult() {
+      let { formResult: res } = self
+      res.showResult = !res.showResult
     },
   }))

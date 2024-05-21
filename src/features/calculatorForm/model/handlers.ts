@@ -3,7 +3,7 @@ import { ChangeEvent, FormEvent, useMemo } from 'react'
 import { CalcForm } from 'shared/types'
 
 export const useHandlers = () => {
-  const { setNewData, reset, calculateResult } = useStore()
+  const { setNewData, reset, calculateResult, setSinkL } = useStore()
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setNewData(e)
@@ -16,7 +16,7 @@ export const useHandlers = () => {
   const handleSubmit =
     (formData: CalcForm) => (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault()
-      console.log(formData)
+      setSinkL()
       calculateResult(formData)
     }
 

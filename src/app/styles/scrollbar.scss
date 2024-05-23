@@ -1,0 +1,23 @@
+html {
+  overflow-x: hidden;
+}
+
+body {
+  width: 100vw;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background-color: transparent;
+
+  &-track {
+    background-color: transparent;
+    border-radius: 3px;
+  }
+
+  &-thumb {
+    background-color: rgba(var(--bs-secondary-rgb), 0.4);
+    border-radius: 3px;
+  }
+}

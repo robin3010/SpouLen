@@ -1,0 +1,22 @@
+@mixin transitionStyle($prop: all, $delay: 0.3s) {
+  transition: $prop $delay cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  cursor: default;
+}
+
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.fade {
+  @include transitionStyle(opacity);
+}

@@ -1,6 +1,6 @@
 import { CalculatorForm } from 'features/calculatorForm'
-import { Calculator } from 'entities/calculator'
 import { CalculatorResult } from 'features/calculatorResult'
+import { Calculator } from 'entities/calculator'
 
 export const Home = () => (
   <Calculator

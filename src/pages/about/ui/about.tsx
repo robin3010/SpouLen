@@ -1,11 +1,6 @@
 export const About = () => (
-  <div>
-    <p>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus, enim
-      voluptatem nisi excepturi, est ipsa in earum deserunt asperiores corrupti
-      quod. Dolorem voluptas ducimus asperiores eligendi. Quaerat facilis unde
-      odio?
-    </p>
+  <>
+    <p>Страница в разработке</p>
     <p>
       Deserunt, adipisci. Ut excepturi dicta eos nisi repellat, veritatis fuga
       fugit pariatur totam unde repudiandae dolores ullam deleniti consequatur
@@ -28,5 +23,5 @@ export const About = () => (
       blanditiis molestiae rem unde quidem beatae. Quasi provident inventore
       ipsum tempora nobis.
     </p>
-  </div>
+  </>
 )

@@ -1,6 +1,6 @@
-import { createServiceObj } from './helpers'
+import { createServiceObj } from 'shared/lib/store'
 
-export const formVars = [
+export const FORM_KEYS = [
   'sinkDrain',
   'sinkFaucetShift',
   'sinkH',
@@ -10,8 +10,8 @@ export const formVars = [
   'spoutL',
 ] as const
 
-export const formInputNames = createServiceObj()
-export const formInit = createServiceObj(0)
+export const formInputNames = createServiceObj(FORM_KEYS)
+export const formInit = createServiceObj(FORM_KEYS, 0)
 
 export const FORM_DATA_KEY = 'FORM_DATA_KEY'
 

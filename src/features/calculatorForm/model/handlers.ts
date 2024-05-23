@@ -1,5 +1,5 @@
-import { useStore } from 'app/store/storeContext'
 import { ChangeEvent, FormEvent, useMemo } from 'react'
+import { useStore } from 'entities/calculator'
 import { CalcForm } from 'shared/types'
 
 export const useHandlers = () => {

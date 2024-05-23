@@ -1,18 +1,15 @@
-import { useStore } from 'app/store/storeContext'
 import { observer } from 'mobx-react-lite'
 import { FC, ReactNode } from 'react'
 import { Form, FormControlProps } from 'react-bootstrap'
-import { formVars } from 'shared/config'
+import { FORM_KEYS } from 'shared/consts'
 
 interface FormControlPropsWithLabel extends FormControlProps {
-  id: (typeof formVars)[number]
+  data: number
+  id: (typeof FORM_KEYS)[number]
   label?: ReactNode
 }
 export const FormControl: FC<FormControlPropsWithLabel> = observer(
-  ({ label, size = 'sm', id, ...controlProps }) => {
-    const value = useStore().formData[id]
-
-    return (
+  ({ data, label, size = 'sm', id, ...controlProps }) => (
       <>
         {label ? (
           <Form.Label
@@ -26,11 +23,10 @@ export const FormControl: FC<FormControlPropsWithLabel> = observer(
           // placeholder=''
           {...controlProps}
           id={id}
-          value={value}
+          value={data}
           size={size}
           autoComplete='off'
         />
       </>
-    )
-  },
+    ),
 )

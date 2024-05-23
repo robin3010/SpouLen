@@ -1,52 +1,10 @@
-import { SnapshotOut, getSnapshot, onSnapshot, types } from 'mobx-state-tree'
-import { ChangeEvent } from 'react'
-import { CalcForm } from 'shared/types'
-import { calculate } from './calculator'
-import { formInit } from 'shared/config'
-import { saveFormToLs } from './localStorage'
+import { Instance } from 'mobx-state-tree'
+import { getSavedToLsForm } from 'entities/calculator'
+import { RootStore } from './storeSchema'
 
-const CalculatorFormData = types.model('CalculatorFormData', formInit)
+// const RootStore = types.compose(CalculatorFormStore, CalculatorResultStore)
 
-export const CalculatorFormStore = types
-  .model('CalculatorFormStore', {
-    formData: CalculatorFormData,
-  })
-  .actions((self) => ({
-    setNewData(e: ChangeEvent<HTMLInputElement>) {
-      const { id, value } = e.target
-      const { formData: data } = self
-      if (!isNaN(+value)) data[id as keyof SnapshotOut<typeof data>] = +value
-    },
-    setSinkL() {
-      const { sinkDrain, sinkFaucetShift } = self.formData
-      self.formData.sinkL = sinkDrain + sinkFaucetShift
-    },
-    reset() {
-      self.formData = { ...formInit }
-    },
-    save() {
-      saveFormToLs(getSnapshot(self.formData))
-    },
-    afterCreate() {
-      onSnapshot(self, this.save)
-    },
-  }))
+export interface RootStoreModel extends Instance<typeof RootStore> {}
 
-export const CalculatorResultStore = types
-  .model('CalculatorResultStore', {
-    formResult: types.model({
-      value: 0,
-      showResult: false,
-    }),
-  })
-  .actions((self) => ({
-    calculateResult(submitData: CalcForm) {
-      let { formResult: res } = self
-      res.value = calculate(submitData)
-      if (!res.showResult) this.toggleResult()
-    },
-    toggleResult() {
-      let { formResult: res } = self
-      res.showResult = !res.showResult
-    },
-  }))
+export const CreateStore = (): RootStoreModel =>
+  RootStore.create({ formData: getSavedToLsForm(), formResult: {} })

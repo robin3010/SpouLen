@@ -1,4 +1,4 @@
-import { FORM_DATA_KEY, lStore } from 'shared/config'
+import { FORM_DATA_KEY, lStore } from 'shared/consts'
 
 export function getSavedToLsForm<T>() {
   const getStore = lStore.getItem(FORM_DATA_KEY)

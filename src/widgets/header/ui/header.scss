@@ -1,0 +1,12 @@
+.navbar-nav a {
+  text-decoration: none;
+  color: rgba(var(--bs-emphasis-color-rgb), 0.5);
+}
+
+.navbar-nav a.active {
+  color: rgba(var(--bs-emphasis-color-rgb), 1);
+}
+
+.navbar-logo {
+  height: 54px;
+}

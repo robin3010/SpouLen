@@ -1,1 +1,1 @@
-export { Root as RootPage } from './ui'
+export { Root as RootPage } from './ui/root'

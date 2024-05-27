@@ -1,0 +1,6 @@
+@import '/src/app/styles/app.scss';
+
+.footer-link {
+  @include transitionStyle(all, 0.2s);
+  font-size: 1.4em;
+}

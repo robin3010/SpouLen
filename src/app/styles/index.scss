@@ -1,0 +1,11 @@
+@use 'bootstrap';
+@use 'app';
+@use 'scrollbar';
+@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css');
+
+// bootstrap related
+.superscript {
+  @extend .text-primary;
+  font-weight: 700;
+  cursor: help;
+}

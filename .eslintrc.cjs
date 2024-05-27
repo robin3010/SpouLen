@@ -1,16 +1,12 @@
 module.exports = {
   root: true,
-  env: { browser: true, es2020: true },
+  env: { browser: true, es2021: true },
   extends: [
-    'eslint:recommended',
     'plugin:react/recommended',
-    'plugin:import/recommended',
-    'plugin:jsx-a11y/recommended',
+    'airbnb',
     'plugin:react/jsx-runtime',
-    'plugin:@typescript-eslint/recommended-type-checked',
-    'plugin:react-hooks/recommended',
-    'eslint-config-prettier',
     '@feature-sliced',
+    'eslint-config-prettier',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -19,7 +15,7 @@ module.exports = {
     project: ['./tsconfig.json', './tsconfig.node.json'],
     tsconfigRootDir: __dirname,
   },
-  plugins: ['react-refresh', 'prettier'],
+  plugins: ['react-refresh', '@typescript-eslint', "@conarti/feature-sliced"],
   settings: {
     react: {
       version: 'detect',
@@ -27,8 +23,8 @@ module.exports = {
     'import/resolver': {
       typescript: { alwaysTryTypes: true },
       node: {
-        paths: ['src'],
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        moduleDirectory: ['node_modules', 'src/'],
       },
     },
   },
@@ -37,5 +33,33 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    'react/function-component-definition': [
+      'error',
+      {
+        namedComponents: 'arrow-function',
+        unnamedComponents: 'arrow-function',
+      },
+    ],
+    'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
+    "no-unused-vars": 1,
+    // "@typescript-eslint/no-unused-vars": ["error"],
+    'import/no-default-export': 2,
+    'import/prefer-default-export': 0,
+    'react/jsx-props-no-spreading': 0,
+    'react/require-default-props': 0,
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
+    "import/no-internal-modules": 0,
+    "@conarti/feature-sliced/layers-slices": 2,
+    "@conarti/feature-sliced/absolute-relative": 0,
+    "@conarti/feature-sliced/public-api": 1,
   },
 }

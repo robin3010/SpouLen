@@ -6,7 +6,7 @@ import {
   TooltipProps,
 } from 'react-bootstrap'
 import { OverlayTriggerRenderProps } from 'react-bootstrap/esm/OverlayTrigger'
-import './styles.scss'
+import './tooltip.scss'
 
 type TooltipCustomProps = Omit<OverlayTriggerProps, 'children' | 'overlay'> &
   TooltipProps & {
